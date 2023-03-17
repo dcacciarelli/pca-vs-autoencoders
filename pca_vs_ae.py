@@ -8,8 +8,8 @@ import os
 import random
 from tqdm import tqdm
 
-# df = pd.read_csv("/Users/dcac/Data/Soft_Sensors/debutanizer.csv")
-df = pd.read_csv("/Users/dcac/Data/Soft_Sensors/SRU1.csv")
+df = pd.read_csv("/Users/dcac/Data/Soft_Sensors/debutanizer.csv")
+# df = pd.read_csv("/Users/dcac/Data/Soft_Sensors/SRU1.csv")
 X = df.drop(["y"], axis=1)
 X_centered = np.array(X - np.mean(X, axis=0))
 seed = 0
@@ -71,13 +71,13 @@ autoencoder_weights = autoencoder.encoder.weight.detach().numpy()
 
 # Plot the weights of PCA and the autoencoder
 fig, axs = plt.subplots(2, 2, figsize=(10, 10))
-axs[0, 0].bar(np.arange(inp_shape), pca_weights[0], color="c", alpha=0.6)
+axs[0, 0].bar(np.arange(inp_shape), pca_weights[0], color="c", alpha=0.6, edgecolor='black')
 axs[0, 0].set_title('PCA weights (component 1)')
-axs[0, 1].bar(np.arange(inp_shape), autoencoder_weights[0], color="slateblue", alpha=0.6)
+axs[0, 1].bar(np.arange(inp_shape), autoencoder_weights[0], color="slateblue", alpha=0.6, edgecolor='black')
 axs[0, 1].set_title('Autoencoder weights (component 1)')
-axs[1, 0].bar(np.arange(inp_shape), pca_weights[1], color="c", alpha=0.6)
+axs[1, 0].bar(np.arange(inp_shape), pca_weights[1], color="c", alpha=0.6, edgecolor='black')
 axs[1, 0].set_title('PCA weights (component 2)')
-axs[1, 1].bar(np.arange(inp_shape), autoencoder_weights[1], color="slateblue", alpha=0.6)
+axs[1, 1].bar(np.arange(inp_shape), autoencoder_weights[1], color="slateblue", alpha=0.6, edgecolor='black')
 axs[1, 1].set_title('Autoencoder weights (component 2)')
 plt.show()
 
