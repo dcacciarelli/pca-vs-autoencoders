@@ -17,6 +17,7 @@ from tqdm import tqdm
 df = pd.read_csv("/Users/dcac/Data/UCI/power1.csv")
 X = df.drop(["y"], axis=1)
 X_centered = np.array(X - np.mean(X, axis=0))
+y = df["y"]
 seed = 0
 inp_shape = X.shape[1]
 
@@ -28,6 +29,13 @@ os.environ['PYTHONHASHSEED'] = str(seed)
 pca = PCA(n_components=2, svd_solver="full")
 pca.fit(X_centered)
 pca_weights = pca.components_
+pca_encoding = pca.transform(X_centered)
+
+plt.figure(figsize=(12, 5))
+# Scatter plot for PCA encoding
+plt.scatter(pca_encoding[:, 0], pca_encoding[:, 1], c=y, cmap='viridis', alpha=0.6)
+plt.title('PCA encoding')
+plt.show()
 
 
 # Define a linear autoencoder with the same number of hidden units as PCA components
