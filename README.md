@@ -1,4 +1,4 @@
-# On the connection between PCA and autoencoders
+# Exploring the connection between PCA and autoencoders
 This repo contains the code for replicating the results from the paper on PCA and autoencoders published in Quality Engineering.
 
 This repo contains:
