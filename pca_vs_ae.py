@@ -8,8 +8,13 @@ import os
 import random
 from tqdm import tqdm
 
-df = pd.read_csv("/Users/dcac/Data/Soft_Sensors/debutanizer.csv")
+# df = pd.read_csv("/Users/dcac/Data/Soft_Sensors/debutanizer.csv")
 # df = pd.read_csv("/Users/dcac/Data/Soft_Sensors/SRU1.csv")
+# df = pd.read_csv("/Users/dcac/Data/UCI/air.csv")
+# df = pd.read_csv("/Users/dcac/Data/UCI/bike.csv")
+# df = pd.read_csv("/Users/dcac/Data/UCI/wine_white.csv")
+# df = pd.read_csv("/Users/dcac/Data/UCI/gas_turbine_co.csv")
+df = pd.read_csv("/Users/dcac/Data/UCI/power1.csv")
 X = df.drop(["y"], axis=1)
 X_centered = np.array(X - np.mean(X, axis=0))
 seed = 0
@@ -47,8 +52,8 @@ random.seed(seed)
 np.random.seed(seed)
 torch.manual_seed(seed)
 os.environ['PYTHONHASHSEED'] = str(seed)
-batch_size = 100
-num_epochs = 1000
+batch_size = 32
+num_epochs = 100
 pbar = tqdm(total=num_epochs, desc="Training", position=0)
 for epoch in range(num_epochs):
     running_loss = 0.0
@@ -70,15 +75,15 @@ pbar.close()
 autoencoder_weights = autoencoder.encoder.weight.detach().numpy()
 
 # Plot the weights of PCA and the autoencoder
-fig, axs = plt.subplots(2, 2, figsize=(10, 10))
-axs[0, 0].bar(np.arange(inp_shape), pca_weights[0], color="c", alpha=0.6, edgecolor='black')
-axs[0, 0].set_title('PCA weights (component 1)')
-axs[0, 1].bar(np.arange(inp_shape), autoencoder_weights[0], color="slateblue", alpha=0.6, edgecolor='black')
-axs[0, 1].set_title('Autoencoder weights (component 1)')
-axs[1, 0].bar(np.arange(inp_shape), pca_weights[1], color="c", alpha=0.6, edgecolor='black')
-axs[1, 0].set_title('PCA weights (component 2)')
-axs[1, 1].bar(np.arange(inp_shape), autoencoder_weights[1], color="slateblue", alpha=0.6, edgecolor='black')
-axs[1, 1].set_title('Autoencoder weights (component 2)')
+fig, axs = plt.subplots(1, 4, figsize=(12, 5))
+axs[0].bar(np.arange(inp_shape), pca_weights[0], color="c", alpha=0.6, edgecolor='black')
+axs[0].set_title('PCA weights (component 1)')
+axs[1].bar(np.arange(inp_shape), autoencoder_weights[0], color="slateblue", alpha=0.6, edgecolor='black')
+axs[1].set_title('AE weights (component 1)')
+axs[2].bar(np.arange(inp_shape), pca_weights[1], color="c", alpha=0.6, edgecolor='black')
+axs[2].set_title('PCA weights (component 2)')
+axs[3].bar(np.arange(inp_shape), autoencoder_weights[1], color="slateblue", alpha=0.6, edgecolor='black')
+axs[3].set_title('AE weights (component 2)')
 plt.show()
 
 # Encode the data using PCA and the autoencoder
@@ -86,9 +91,20 @@ pca_encoding = pca.transform(X_centered)
 autoencoder_encoding = autoencoder.encoder(torch.tensor(X_centered).float()).detach().numpy()
 
 # Plot the encoded features using PCA and the autoencoder
-fig, axs = plt.subplots(1, 2)
+fig, axs = plt.subplots(1, 2, figsize=(12, 5))
 axs[0].scatter(pca_encoding[:, 0], pca_encoding[:, 1], color="c", alpha=0.6)
 axs[0].set_title('PCA encoding')
 axs[1].scatter(autoencoder_encoding[:, 0], autoencoder_encoding[:, 1], color="slateblue", alpha=0.6)
-axs[1].set_title('Autoencoder encoding')
+axs[1].set_title('AE encoding')
 plt.show()
+
+# Compute the covariance matrix of the encoded data
+# covariance_matrix = np.cov(pca_encoding, rowvar=False)
+# plt.imshow(covariance_matrix)
+# plt.colorbar()
+# plt.show()
+# # Compute the covariance matrix of the encoded data
+# covariance_matrix = np.cov(autoencoder_encoding, rowvar=False)
+# plt.imshow(covariance_matrix)
+# plt.colorbar()
+# plt.show()
