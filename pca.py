@@ -9,4 +9,4 @@ def pca_encoding(x, encoding_dim=2):
     x_scaled = scaler.fit_transform(x)
     pca = PCA(n_components=encoding_dim, svd_solver="full")
 
-    return pca.fit_transform(x_scaled)
+    return pca.fit_transform(x_scaled), pca.components_
