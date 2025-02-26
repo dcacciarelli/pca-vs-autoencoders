@@ -1,5 +1,5 @@
 ### **PCA vs Autoencoders: Understanding Hidden Data Structures**
-This repository contains the code and materials for the paper *"Hidden Dimensions of the Data: PCA vs Autoencoders"* published in *Quality Engineering*. It explores the connections between Principal Component Analysis (PCA) and linear autoencoders, providing insights into dimensionality reduction and latent feature extraction.
+This repository contains the code and materials for the paper **"Hidden Dimensions of the Data: PCA vs Autoencoders"** published in *Quality Engineering*. It explores the connections between Principal Component Analysis (PCA) and linear autoencoders, providing insights into dimensionality reduction and latent feature extraction.
 
 ---
 
@@ -55,7 +55,3 @@ jupyter notebook comparison.ipynb
 ## **Citation**
 If you use this work in your research, please cite:
 > Cacciarelli, D. *Hidden Dimensions of the Data: PCA vs Autoencoders*. Quality Engineering, 2024.
-
----
-
-This README improves clarity, adds a better structure, and enhances engagement with visuals. If you want specific image placeholders replaced with actual links from your GitHub repo, let me know! 🚀
