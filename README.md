@@ -1,11 +1,5 @@
-Here's an improved README file for your PCA vs Autoencoders repository with better structure, images, and explanations.
-
----
-
 ### **PCA vs Autoencoders: Understanding Hidden Data Structures**
 This repository contains the code and materials for the paper *"Hidden Dimensions of the Data: PCA vs Autoencoders"* published in *Quality Engineering*. It explores the connections between Principal Component Analysis (PCA) and linear autoencoders, providing insights into dimensionality reduction and latent feature extraction.
-
-![PCA vs Autoencoders](https://github.com/dcacciarelli/pca-vs-autoencoders/assets/83544651/5df873d1-9c1d-4ebc-a431-4fcc2afae0a1)
 
 ---
 
@@ -28,7 +22,7 @@ Both PCA and autoencoders aim to find a lower-dimensional representation of high
 
 ### **Example Comparison**
 Below is an example visualization comparing PCA with autoencoder encodings:
-![Encoding Comparison](https://github.com/dcacciarelli/pca-vs-autoencoders/assets/83544651/example_image_id)
+![PCA vs Autoencoders](https://github.com/dcacciarelli/pca-vs-autoencoders/assets/83544651/5df873d1-9c1d-4ebc-a431-4fcc2afae0a1)
 
 ---
 
